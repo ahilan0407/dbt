@@ -1,9 +1,5 @@
-{{ config(materialized='table') }}
-
-WITH tb1 as(
-    select id,
-    order_date,
-    user_id
-
-    from {{source('datafeed_shared_schema','stg_order')}})
-select * from tb1
+WITH tb1 AS (
+    SELECT id, order_date, user_id
+    FROM {{ source('datafeed_shared_schema', 'stg_order') }}
+)
+SELECT * FROM tb1;
